@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAQ,wGAAgG;ACCxG,CAAE;EACD,OAAO,EAAE,CAAC;EACV,MAAM,EAAE,CAAC;EACT,UAAU,EAAE,UAAU;;AAGvB,IAAK;EACJ,KAAK,EAAE,IAAI;EACX,MAAM,EAAE,KAAK;EACb,gBAAgB,EAAE,IAAI;EDUrB,eAAe,ECTQ,MAAM;EDc7B,WAAW,ECdoB,MAAM;EDgBtC,OAAO,EAAE,IAAI;ECfb,KAAK,EAAE,IAAI;EACX,OAAO,EAAE,UAAU",
+"sources": ["../components/main/mixin.scss","App.scss"],
+"names": [],
+"file": "App.css"
+}
