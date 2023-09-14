@@ -1,0 +1,300 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box; }
+
+.home {
+  width: 100%;
+  height: 100vh;
+  background-color: #F7F8FC;
+  display: flex; }
+  .home__navigation {
+    width: 25%;
+    height: 100%;
+    background-color: #fff;
+    padding: 55px 45px;
+    justify-content: space-between;
+    align-items: space-between;
+    display: flex;
+    flex-direction: column; }
+    .home__navigation-top-logo {
+      justify-content: flex-start;
+      align-items: center;
+      display: flex;
+      cursor: pointer; }
+      .home__navigation-top-logo .home__icon {
+        width: 38px;
+        height: 45px;
+        background-image: url(../img/logo.svg);
+        background-size: cover; }
+      .home__navigation-top-logo .home__logo {
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: auto;
+        letter-spacing: auto;
+        color: #15151F;
+        margin-top: 0px;
+        margin-left: 15px; }
+    .home__navigation-top-menu {
+      width: auto;
+      height: auto;
+      margin-top: 50px; }
+      .home__navigation-top-menu .home__nav {
+        width: 309px;
+        height: 60px;
+        border-radius: 4px;
+        justify-content: flex-start;
+        align-items: center;
+        display: flex;
+        margin-top: 20px;
+        padding-left: 20px;
+        cursor: pointer; }
+        .home__navigation-top-menu .home__nav-icon {
+          width: 30px;
+          height: 30px;
+          background-size: cover; }
+        .home__navigation-top-menu .home__nav-icon1 {
+          background-image: url(../img/profil.svg); }
+        .home__navigation-top-menu .home__nav-icon2 {
+          background-image: url(../img/support.svg); }
+        .home__navigation-top-menu .home__nav-text {
+          font-family: 'Montserrat', sans-serif;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 20px;
+          line-height: auto;
+          letter-spacing: auto;
+          color: #fff;
+          margin-top: 0px;
+          margin-left: 20px; }
+        .home__navigation-top-menu .home__nav-defult {
+          font-family: 'Montserrat', sans-serif;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 20px;
+          line-height: auto;
+          letter-spacing: auto;
+          color: #94A3B8;
+          margin-top: 0px;
+          margin-left: 20px; }
+      .home__navigation-top-menu .home__nav-active {
+        background: #9747FF; }
+    .home__navigation-bottom {
+      width: auto;
+      height: auto;
+      justify-content: flex-start;
+      align-items: center;
+      display: flex;
+      cursor: pointer; }
+      .home__navigation-bottom-icon {
+        width: 30px;
+        height: 30px;
+        background-image: url(../img/log-out.svg);
+        background-size: cover; }
+      .home__navigation-bottom-text {
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: auto;
+        letter-spacing: auto;
+        color: #94A3B8;
+        margin-top: 0px;
+        margin-left: 20px; }
+  .home__container {
+    width: 70%;
+    height: 100%;
+    padding: 40px 50px; }
+    .home__container .home__container-top {
+      width: 100%;
+      height: 40%; }
+      .home__container .home__container-top-title {
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 32px;
+        line-height: auto;
+        letter-spacing: auto;
+        color: #15151F;
+        margin-top: 0px; }
+      .home__container .home__container-top-filter {
+        width: auto;
+        height: auto;
+        margin-top: 25px;
+        display: grid;
+        grid-template-columns: 70% 30%;
+        /* Перша кнопка 70%, друга 30% */
+        gap: 10px;
+        grid-auto-rows: minmax(15px, auto); }
+        .home__container .home__container-top-filter .home__search {
+          width: 100%;
+          height: 60px;
+          border-radius: 4px;
+          border: 1px solid #E8E8E8;
+          background: #FFF;
+          justify-content: flex-start;
+          align-items: center;
+          display: flex;
+          padding: 0 20px;
+          cursor: pointer; }
+          .home__container .home__container-top-filter .home__search-icon {
+            width: 24px;
+            height: 24px;
+            background-image: url(../img/search.svg);
+            background-size: cover; }
+          .home__container .home__container-top-filter .home__search-input {
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            margin-left: 25px;
+            justify-content: flex-start;
+            align-items: center;
+            display: flex;
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: auto;
+            letter-spacing: auto;
+            color: #94A3B8;
+            margin-top: 0px; }
+      .home__container .home__container-top-filter .home__button:nth-child(n + 3) {
+        grid-column: span 2; }
+      .home__container .home__container-top-password {
+        font-family: 'Montserrat', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: auto;
+        letter-spacing: auto;
+        color: #94A3B8;
+        margin-top: 30px; }
+        .home__container .home__container-top-password span {
+          color: #9747FF; }
+    .home__container-bottom {
+      width: 100%;
+      height: 60%;
+      overflow-y: auto;
+      padding-right: 2%;
+      /* Track */
+      /* Handle */ }
+      .home__container-bottom::-webkit-scrollbar {
+        width: 6px;
+        left: -100px; }
+      .home__container-bottom::-webkit-scrollbar-track {
+        background: transparent; }
+      .home__container-bottom::-webkit-scrollbar-thumb {
+        background: #94A3B8;
+        border-radius: 10px; }
+      .home__container-bottom-password {
+        width: 100%;
+        height: 102px;
+        border-radius: 5px;
+        border: 1px solid #E8E8E8;
+        background: #FFF;
+        padding: 21px;
+        justify-content: space-between;
+        align-items: center;
+        display: flex;
+        margin: 10px 0; }
+        .home__container-bottom-password .password__info {
+          width: auto;
+          height: auto;
+          justify-content: flex-start;
+          align-items: center;
+          display: flex; }
+          .home__container-bottom-password .password__info-photo {
+            width: 80px;
+            height: 80px;
+            background: #F5F2F6; }
+          .home__container-bottom-password .password__info-text {
+            width: auto;
+            height: 80px;
+            justify-content: space-between;
+            align-items: flex-start;
+            display: flex;
+            flex-direction: column;
+            margin-left: 30px; }
+            .home__container-bottom-password .password__info-text .password__title {
+              font-family: 'Montserrat', sans-serif;
+              font-style: normal;
+              font-weight: 500;
+              font-size: 24px;
+              line-height: auto;
+              letter-spacing: auto;
+              color: #15151F;
+              margin-top: 0px; }
+            .home__container-bottom-password .password__info-text .password__main {
+              width: auto;
+              height: 32px;
+              border-radius: 39px;
+              background: #9747FF;
+              justify-content: center;
+              align-items: center;
+              display: flex;
+              font-family: 'Montserrat', sans-serif;
+              font-style: normal;
+              font-weight: 500;
+              font-size: 20px;
+              line-height: auto;
+              letter-spacing: auto;
+              color: 0;
+              margin-top: 0px;
+              color: #fff;
+              padding: 0 12px;
+              cursor: pointer; }
+        .home__container-bottom-password .password__changes {
+          width: auto;
+          height: 80px;
+          justify-content: space-between;
+          align-items: flex-end;
+          display: flex;
+          flex-direction: column; }
+          .home__container-bottom-password .password__changes-date {
+            font-family: 'Montserrat', sans-serif;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: auto;
+            letter-spacing: auto;
+            color: #94A3B8;
+            margin-top: 0px; }
+          .home__container-bottom-password .password__changes-box {
+            width: auto;
+            height: auto;
+            justify-content: flex-start;
+            align-items: center;
+            display: flex; }
+            .home__container-bottom-password .password__changes-box .change__button {
+              width: 34px;
+              height: 34px;
+              border: 1px solid #E8E8E8;
+              background: #FFF;
+              cursor: pointer;
+              justify-content: center;
+              align-items: center;
+              display: flex;
+              margin: 0 15px;
+              position: relative;
+              left: 15px; }
+              .home__container-bottom-password .password__changes-box .change__button-img {
+                width: 19px;
+                height: 19px;
+                background-size: cover;
+                background-repeat: no-repeat; }
+              .home__container-bottom-password .password__changes-box .change__button-copys {
+                background-image: url(../img/copy.svg); }
+              .home__container-bottom-password .password__changes-box .change__button-oEyes {
+                background-image: url(../img/oEyes.svg); }
+              .home__container-bottom-password .password__changes-box .change__button-cEyes {
+                background-image: url(../img/cEyes.svg); }
+              .home__container-bottom-password .password__changes-box .change__button-trash {
+                background-image: url(../img/trash.svg); }
+
+/*# sourceMappingURL=Home.css.map */

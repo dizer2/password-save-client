@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import "./style/Form.css"
 import { useNavigate } from 'react-router-dom';
 
-function Form() {
+function Form({setThisLogin}) {
 
 	const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
@@ -21,6 +21,8 @@ function Form() {
             }
         })
         result = await result.json();
+		console.log('USERS: ' + result.login);
+		setThisLogin(result.login);
         console.warn(result);
         if (result) {
             alert("Data saved succesfully");
