@@ -5,7 +5,10 @@ import { useState } from "react";
 
 
 function App() {
-	const [thisLogin, setThisLogin] = useState("");
+	const [thisLogin, setThisLogin] = useState(() => {
+		const thisUserLocalStorig = localStorage.getItem('PASSWORD-USER');
+		return thisUserLocalStorig ? JSON.parse(thisUserLocalStorig) : "";
+	});
 
 	return (
     <BrowserRouter>

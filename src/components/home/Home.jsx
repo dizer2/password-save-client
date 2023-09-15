@@ -3,7 +3,9 @@ import "./style/Home.css"
 import { useNavigate } from 'react-router-dom';
 import Button from '../UI/Buttons/Button';
 
-function Home({ thisLogin }) {
+function Home({ thisLogin, thisUser, seTthisUser }) {
+
+	const navigate = useNavigate();
 
   const [buttons, setButtons] = useState([
     {
@@ -29,17 +31,18 @@ function Home({ thisLogin }) {
       }
 
       const result = await response.json();
+			localStorage.setItem("PASSWORD-USER", JSON.stringify(result.login));
       console.log(result);
 
     } catch (error) {
       console.error("Error:", error);
+      // navigate("/");
     }
   }
 
-
   useEffect(() => {
     fetchData();
-  }, []);
+  });
 
   const hadleSupport = () => {
     window.open('https://github.com/dizer2');
