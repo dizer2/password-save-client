@@ -3,9 +3,10 @@ import "./style/Home.css"
 import { useNavigate } from 'react-router-dom';
 import Button from '../UI/Buttons/Button';
 
-function Home({ thisLogin, thisUser, seTthisUser }) {
+function Home({ thisLogin, setThisLogin }) {
 
 	const navigate = useNavigate();
+  const [data, setData] = useState([]);
 
   const [buttons, setButtons] = useState([
     {
@@ -27,12 +28,14 @@ function Home({ thisLogin, thisUser, seTthisUser }) {
       const response = await fetch(`http://localhost:5000/get-user?login=${thisLogin}`);
 
       if (!response.ok) {
+        window.location.reload();
         throw new Error(`HTTP error! Status: ${response.status}`);
+
       }
 
       const result = await response.json();
 			localStorage.setItem("PASSWORD-USER", JSON.stringify(result.login));
-      console.log(result);
+      setData(result);
 
     } catch (error) {
       console.error("Error:", error);
@@ -42,10 +45,17 @@ function Home({ thisLogin, thisUser, seTthisUser }) {
 
   useEffect(() => {
     fetchData();
-  });
+  }, []);
 
   const hadleSupport = () => {
     window.open('https://github.com/dizer2');
+  }
+
+  const hadnleLogOut = () => {
+    setThisLogin("");
+    localStorage.removeItem("PASSWORD-USER");
+    navigate("/");
+    
   }
 
   return (
@@ -60,7 +70,7 @@ function Home({ thisLogin, thisUser, seTthisUser }) {
           <div className="home__navigation-top-menu">
             <div className="home__nav home__nav-active">
               <div className="home__nav-icon home__nav-icon1"></div>
-              <p className="home__nav-text">Dizerv1</p>
+              <p className="home__nav-text">Profil</p>
             </div>
 
             <div className="home__nav" onClick={hadleSupport}>
@@ -73,7 +83,7 @@ function Home({ thisLogin, thisUser, seTthisUser }) {
           <div className="home__navigation-bottom-icon">
 
           </div>
-          <p className="home__navigation-bottom-text">Log out</p>
+          <p onClick={hadnleLogOut} className="home__navigation-bottom-text">Log out</p>
         </div>
 
 
@@ -81,7 +91,7 @@ function Home({ thisLogin, thisUser, seTthisUser }) {
       </div>
       <div className="home__container">
         <div className="home__container-top">
-          <p className='home__container-top-title'>Dizerv2</p>
+          <p className='home__container-top-title'>{data.login}</p>
 
           <div className="home__container-top-filter">
             <div className="home__search">

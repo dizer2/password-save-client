@@ -14,7 +14,7 @@ function App() {
     <BrowserRouter>
 		<Routes>
 			<Route path="/*" element={<Form setThisLogin={setThisLogin} /> } />
-			<Route path="/home" element={<Home thisLogin={thisLogin} />} />
+			<Route path="/home" element={<Home setThisLogin={setThisLogin} thisLogin={thisLogin} />} />
 		</Routes>
 	</BrowserRouter>
   );
