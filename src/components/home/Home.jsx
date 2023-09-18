@@ -3,10 +3,10 @@ import "./style/Home.css"
 import { useNavigate } from 'react-router-dom';
 import Button from '../UI/Buttons/Button';
 
-function Home({ thisLogin, setThisLogin }) {
+function Home({data, setData, thisLogin, setThisLogin, thisPassword, setThisPassword }) {
 
 	const navigate = useNavigate();
-  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [buttons, setButtons] = useState([
     {
@@ -22,30 +22,36 @@ function Home({ thisLogin, setThisLogin }) {
 
   ]);
 
-
   async function fetchData() {
+    if (!thisLogin) {
+      window.location.reload();
+      return;
+    }
+  
     try {
-      const response = await fetch(`http://localhost:5000/get-user?login=${thisLogin}`);
-
+      const response = await fetch(`http://localhost:5000/get-user?login=${thisLogin}&password=${thisPassword}`);
       if (!response.ok) {
-        window.location.reload();
         throw new Error(`HTTP error! Status: ${response.status}`);
-
       }
-
+  
       const result = await response.json();
-			localStorage.setItem("PASSWORD-USER", JSON.stringify(result.login));
+      localStorage.setItem("LOGIN-USER", JSON.stringify(result.login));
+      localStorage.setItem("PASSWORD-USER", JSON.stringify(result.password));
       setData(result);
+      console.log(result);
+      console.log(data);
+      setIsLoading(true); 
 
     } catch (error) {
       console.error("Error:", error);
-      // navigate("/");
+      setIsLoading(true); 
     }
   }
+  
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [thisLogin]);
 
   const hadleSupport = () => {
     window.open('https://github.com/dizer2');
@@ -53,6 +59,8 @@ function Home({ thisLogin, setThisLogin }) {
 
   const hadnleLogOut = () => {
     setThisLogin("");
+    setThisPassword("");
+    localStorage.removeItem("LOGIN-USER");
     localStorage.removeItem("PASSWORD-USER");
     navigate("/");
     
@@ -89,7 +97,9 @@ function Home({ thisLogin, setThisLogin }) {
 
 
       </div>
-      <div className="home__container">
+
+      {isLoading ? (
+        <div className="home__container">
         <div className="home__container-top">
           <p className='home__container-top-title'>{data.login}</p>
 
@@ -261,6 +271,12 @@ function Home({ thisLogin, setThisLogin }) {
 
 
       </div>
+      ):(
+        <div>
+          <h1>Loading...</h1>
+        </div>
+      )}
+      
     </div>
   );
 }

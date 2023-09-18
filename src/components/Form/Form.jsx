@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "./style/Form.css";
 import { useNavigate } from 'react-router-dom';
 
-function Form({ setThisLogin }) {
+function Form({ setThisLogin, setThisPassword, setData }) {
 
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
@@ -35,27 +35,40 @@ function Form({ setThisLogin }) {
         }
 
         if (login.length >= 6 && password.length >= 8) {
-            let result = await fetch(
+            // Disable the registration button to prevent multiple submissions
+        
+            try {
+              let result = await fetch(
                 'http://localhost:5000/register', {
-                    method: "post",
-                    body: JSON.stringify({ login, password, savePassword }),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
+                  method: "post",
+                  body: JSON.stringify({ login, password, savePassword }),
+                  headers: {
+                    'Content-Type': 'application/json'
+                  }
                 });
-
-            result = await result.json();
-            console.log('USERS: ' + result.login);
-            setThisLogin(result.login);
-            console.warn(result);
-
-            if (result) {
+        
+              result = await result.json();
+              console.log(result);
+              console.log('USERS: ' + result.login);
+              console.log('USERS: ' + result.password);
+              setThisLogin(result.login);
+              setThisPassword(result.password);
+              console.warn(result);
+              if (result.error && result.error === 'User with this login already exists') {
+                console.log("This login exists");
+                setLoginName("This login exists");
+                setLoginNameColor("#FF4794");
+              } else {
                 setLogin("");
                 setPassword("");
                 navigate("/home");
+              }
+            } catch (error) {
+              console.error("Error:", error);
+        
             }
+          }
         }
-    }
 
     const handleLogin = () => {
         setLoginOpen(!loginOpen); 
@@ -81,28 +94,27 @@ function Form({ setThisLogin }) {
 
         if (login.length >= 6 && password.length >= 8) {
             try {
-                const response = await fetch(`http://localhost:5000/get-user?login=${login}`);
-          
-                if (!response.ok) {
-                  throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-          
-                const result = await response.json();
-                localStorage.setItem("PASSWORD-USER", JSON.stringify(result.login));
-                console.log(result);
-                if (result) {
-                    setLogin("");
-                    setPassword("");
-                    navigate("/home");
-                }
-          
-              } catch (error) {
-                console.error("Error:", error);
-                // navigate("/");
+              const response = await fetch(`http://localhost:5000/get-user?login=${login}&password=${password}`);
+            
+              if (!response.ok) {
+                window.location.reload();
+                throw new Error(`HTTP error! Status: ${response.status}`);
               }
-
-           
-        }
+            
+              const result = await response.json();
+              console.log(result);
+              if (result) {
+                localStorage.setItem("LOGIN-USER", JSON.stringify(result.login));
+                localStorage.setItem("PASSWORD-USER", JSON.stringify(result.password));
+                setLogin("");
+                setPassword("");
+                navigate("/home");
+              }
+            } catch (error) {
+              console.error("Error:", error);
+              // Handle errors as needed, e.g., display an error message or navigate to a different page
+            }
+          }
 
     }
 
