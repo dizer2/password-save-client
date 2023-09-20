@@ -11,7 +11,8 @@
 	width: 100%;
 	height: 100vh;
 	background-color: $mainColorBg;
-	display: flex;
+	@include display-center(center, center);
+
 	&__navigation{
 		width: 25%;
 		height: 100%;
@@ -102,10 +103,24 @@
 
 		
 	}
-	&__container{
-		width: 70%;
+	&__loading{
+		width: 75%;
 		height: 100%;	
-		padding: 40px 50px;
+		padding-top: 40px;
+		padding-bottom: 40px;
+		padding-left: 50px;
+		padding-right: 100px;
+	}
+	
+	&__container{
+		width: 75%;
+		height: 100%;	
+		padding-top: 40px;
+		padding-bottom: 40px;
+		padding-left: 50px;
+		padding-right: 100px;
+
+
 		.home__container-top{
 			width: 100%;
 			height: 40%;
@@ -294,4 +309,113 @@
 	}
 
 	}
+
+	&__popup{
+		width: 60%;
+		height: 80%;
+		border-radius: 5px;
+		border: 2px solid #E8E8E8;
+		position: absolute;
+		z-index: 3;
+		overflow: hidden;
+		
+		background: rgba(151, 71, 255, 0.90);
+		backdrop-filter: blur(8.5px);
+		@include display-center(center, center);
+		flex-direction: column;
+		bottom: 101%;
+		opacity: 0;
+		transition: all 700ms cubic-bezier(0.230, 1.000, 0.320, 1.000);
+		transition-timing-function: cubic-bezier(0.230, 1.000, 0.320, 1.000);
+
+		padding-left: 10px;
+		padding-right: 10px;
+		 
+		&-penguin{
+			width: 203px;
+			height: 243px;
+			background-image: url(../img/penguin.svg);
+			position: absolute;
+			left: -15%;
+			transform: rotate(34deg);
+		}
+
+		&-close{
+			width: 24px;
+			height: 24px;
+			background-image: url(../img/close.svg);
+			background-size: cover;
+			position: absolute;
+			z-index: 5;
+			left: 94%;
+			bottom: 92%;
+			cursor: pointer;
+
+		}
+
+		&-title{
+			@include font(#fff, 32px, 600, auto, auto, 0px);
+			z-index: 4;
+			margin-bottom: 10px;
+			text-align: center;
+		}
+
+		&-input{
+			width: 282px;
+			height: 60px;
+			border-radius: 4px;
+			border: 1px solid $border;
+			background: #FFF;
+			@include display-center(flex-start, center);
+			padding: 0 25px;
+			z-index: 4;
+			outline: none;
+			@include font($mainDefultColor, 20px, 500, auto, auto, 0px);
+			margin-top: 15px;
+
+		}
+
+		&-button{
+			width: 282px;
+			height: 60px;
+			border-radius: 4px;
+			border: none;
+			background: $mainColor;
+			@include display-center(center, center);
+			@include font(#fff, 20px, 500, auto, auto, 0px);
+			transition: 0.5s;
+			cursor: pointer;
+			z-index: 4;
+			margin-top: 70px;
+
+			&:hover{
+				border: 1px solid $mainColor;
+				background-color: transparent;
+				color: $mainColor;
+				transition: 0.5s;
+			}
+			
+		}
+
+		&::after{
+			content: "";
+			width: 500px;
+			height: 500px;
+			border-radius: 50%;
+			background: $coffeDark;
+			position: absolute;
+			bottom: -30%;
+		}
+	}
+
+	//* popup animation 
+	&__popup-open {
+		flex-direction: column;
+		bottom: 10%;
+		transition: all 700ms cubic-bezier(0.230, 1.000, 0.320, 1.000); 
+		transition-timing-function: cubic-bezier(0.230, 1.000, 0.320, 1.000); 
+		opacity: 1;
+		
+	}
+
 }

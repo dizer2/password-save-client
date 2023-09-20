@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./style/Form.css";
 import { useNavigate } from 'react-router-dom';
 
@@ -6,7 +6,6 @@ function Form({ setThisLogin, setThisPassword, setData }) {
 
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
-    const [savePassword, setSavePassword] = useState({});
     const [loginName, setLoginName] = useState("Login");
     const [passwordName, setPasswordName] = useState("Password");
     const [loginNameColor, setLoginNameColor] = useState("white"); 
@@ -14,6 +13,13 @@ function Form({ setThisLogin, setThisPassword, setData }) {
     const [loginOpen, setLoginOpen] = useState(false); 
 
     const navigate = useNavigate();
+    
+    useEffect(() => {
+      if ("LOGIN-USER" in localStorage ) {
+        navigate("/home")
+      } 
+    }, [])
+   
 
     const handleOnSubmit = async (e) => {
         e.preventDefault();
@@ -35,13 +41,12 @@ function Form({ setThisLogin, setThisPassword, setData }) {
         }
 
         if (login.length >= 6 && password.length >= 8) {
-            // Disable the registration button to prevent multiple submissions
-        
+
             try {
               let result = await fetch(
                 'http://localhost:5000/register', {
                   method: "post",
-                  body: JSON.stringify({ login, password, savePassword }),
+                  body: JSON.stringify({ login, password }),
                   headers: {
                     'Content-Type': 'application/json'
                   }
@@ -118,6 +123,7 @@ function Form({ setThisLogin, setThisPassword, setData }) {
 
     }
 
+  
     return (
         <div className="form">
             <div className="form__wallpaper"></div>
