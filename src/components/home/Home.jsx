@@ -15,6 +15,7 @@ function Home({data, setData, thisLogin, setThisLogin, thisPassword, setThisPass
   const [popupTitle, setpPopupTitle] = useState("Add new password");
   const [popupTitleColor, setpPopupTitleColor] = useState("white"); 
   const [showPassword, setShowPassword] = useState(false);
+  const [sortOrder, setSortOrder] = useState('desc'); // Added sorting order state
 
   
 
@@ -23,25 +24,6 @@ function Home({data, setData, thisLogin, setThisLogin, thisPassword, setThisPass
   }
 
   
-  const [buttons] = useState([
-    {
-      id: 0,
-      iconUrl: 'https://i.ibb.co/2FL1tsB/Document-Add.png',
-      text: 'Sort by date',
-      onClick: () => {
-        console.log("SORT")
-      },
-  
-    },
-    {
-      id: 1,
-      iconUrl: 'https://i.ibb.co/3djKKDT/List.png',
-      text: 'Add new',
-      onClick: handlePopup,
-    },
-
-  ]);
-
 
   async function fetchData() {
     if (!thisLogin) {
@@ -245,8 +227,29 @@ function Home({data, setData, thisLogin, setThisLogin, thisPassword, setThisPass
     });
     setSavePassword(updatedPasswords);
   };
-  
 
+
+  const handleSortByDate = () => {
+    // Toggle sorting order
+    const newSortOrder = sortOrder === 'desc' ? 'asc' : 'desc';
+    setSortOrder(newSortOrder);
+
+    const sortedPasswords = [...savePassword].sort((a, b) => {
+      const dateA = new Date(a.date.split('.').reverse().join('-') + 'T00:00:00');
+      const dateB = new Date(b.date.split('.').reverse().join('-') + 'T00:00:00');
+
+      if (newSortOrder === 'asc') {
+        return dateA - dateB; // Sort ascending (oldest to newest)
+      } else {
+        return dateB - dateA; // Sort descending (newest to oldest)
+      }
+    });
+
+    setSavePassword([...sortedPasswords]); // Create a new array with sorted elements
+  };
+
+
+  
 
   return (
     <div className='home'>
@@ -302,11 +305,8 @@ function Home({data, setData, thisLogin, setThisLogin, thisPassword, setThisPass
               <div className="home__search-icon"></div>
               <input className='home__search-input' type="text" placeholder='Search by name' />
             </div>
-            {
-              buttons.map((button) => (
-                <Button key={button.id} onClick={button.onClick} icon={button.iconUrl} text={button.text} ></Button>
-              ))
-            }
+            <Button id={0} onClick={handleSortByDate} icon='https://i.ibb.co/2FL1tsB/Document-Add.png' text="Sort by date"></Button>
+            <Button id={1} onClick={handlePopup} icon='https://i.ibb.co/3djKKDT/List.png' text="Add new"></Button>
           </div>
 
           <div className="home__container-top-password">Were found <span>{savePassword.length}</span> password</div>
