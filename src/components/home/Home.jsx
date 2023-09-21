@@ -10,12 +10,13 @@ function Home({data, setData, thisLogin, setThisLogin, thisPassword, setThisPass
   const [popupOpen, setPopupOpen] = useState(false);
   const [namePassword, setNamePassword] = useState("");
   const [originalPassword, setOriginalPassword] = useState("");
-  const [hidePassword, setHidePassword] = useState("");
   const [savePassword, setSavePassword] = useState([]);
+  const [originalSavePassword, setOriginalSavePassword] = useState([]);
   const [popupTitle, setpPopupTitle] = useState("Add new password");
   const [popupTitleColor, setpPopupTitleColor] = useState("white"); 
-  const [showPassword, setShowPassword] = useState(false);
-  const [sortOrder, setSortOrder] = useState('desc'); // Added sorting order state
+  const [sortOrder, setSortOrder] = useState('desc'); 
+  const [searchQuery, setSearchQuery] = useState('');
+
 
   
 
@@ -42,6 +43,7 @@ function Home({data, setData, thisLogin, setThisLogin, thisPassword, setThisPass
       localStorage.setItem("PASSWORD-USER", JSON.stringify(result.password));
       setData(result);
       setSavePassword(result.savePassword || []);
+      setOriginalSavePassword(result.savePassword || []);
       console.log(result);
       console.log(data);
       setIsLoading(true); 
@@ -76,7 +78,7 @@ function Home({data, setData, thisLogin, setThisLogin, thisPassword, setThisPass
 
 
   const handleAddNewPassword = async () => {
-    // Check if nїamePassword and originalPassword are not empty and don't exceed 18 characters
+    // Check if namePassword and originalPassword are not empty and don't exceed 18 characters
     if (
       namePassword && namePassword.length <= 18 &&
       originalPassword && originalPassword.length <= 18
@@ -133,6 +135,9 @@ function Home({data, setData, thisLogin, setThisLogin, thisPassword, setThisPass
           // Update the savePassword state with the new user object
           setSavePassword(result.savePassword || []);
   
+          // Also update the originalSavePassword array by adding the new password
+          setOriginalSavePassword([...originalSavePassword, newPassword]);
+  
           // Clear the input fields and close the popup
           setNamePassword("");
           setOriginalPassword("");
@@ -172,21 +177,24 @@ function Home({data, setData, thisLogin, setThisLogin, thisPassword, setThisPass
           password: thisPassword,
         }),
       });
-
+  
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-
+  
       // If the deletion was successful on the server, update the state
       const updatedPasswords = savePassword.filter((password) => password.id !== id);
       setSavePassword(updatedPasswords);
+  
+      // Also update the originalSavePassword array
+      const updatedOriginalPasswords = originalSavePassword.filter((password) => password.id !== id);
+      setOriginalSavePassword(updatedOriginalPasswords);
     } catch (error) {
       console.error('Error:', error);
       // Handle errors as needed
     }
   };
-
-
+  
 
 
   const hadleCopyPasswrod = (text) => {
@@ -249,7 +257,27 @@ function Home({data, setData, thisLogin, setThisLogin, thisPassword, setThisPass
   };
 
 
-  
+
+  const handleSearchByName = (e) => {
+    // Get the current search query from the input field
+    const query = e.target.value.toLowerCase();
+
+    // Set the search query state
+    setSearchQuery(query);
+
+    // Filter passwords by name based on the search query
+    const filteredPasswords = query === ""
+      ? originalSavePassword // If query is empty, show all original passwords
+      : originalSavePassword.filter((password) =>
+          password.name.toLowerCase().includes(query)
+        );
+
+    // Update the savePassword state with the filtered passwords
+    setSavePassword(filteredPasswords);
+  };
+
+
+
 
   return (
     <div className='home'>
@@ -303,8 +331,17 @@ function Home({data, setData, thisLogin, setThisLogin, thisPassword, setThisPass
           <div className="home__container-top-filter">
             <div className="home__search">
               <div className="home__search-icon"></div>
-              <input className='home__search-input' type="text" placeholder='Search by name' />
-            </div>
+                <input
+                  className="home__search-input"
+                  type="text"
+                  placeholder="Search by name"
+                  value={searchQuery}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    handleSearchByName(e);
+                  }}                  
+                />            
+              </div>
             <Button id={0} onClick={handleSortByDate} icon='https://i.ibb.co/2FL1tsB/Document-Add.png' text="Sort by date"></Button>
             <Button id={1} onClick={handlePopup} icon='https://i.ibb.co/3djKKDT/List.png' text="Add new"></Button>
           </div>
