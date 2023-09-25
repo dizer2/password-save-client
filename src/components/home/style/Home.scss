@@ -512,6 +512,20 @@
 				}
 			}
 		}
+		&__popup{
+			width: 90%;
+			height: 80%;
+			border-radius: 5px;
+			padding-left: 10px;
+			padding-right: 10px;
+	
+			&-close{
+				position: absolute;
+				z-index: 5;
+				left: 90%;
+				bottom: 92%;	
+			}
+		}
 	}
 }
 

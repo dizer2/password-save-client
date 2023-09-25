@@ -477,7 +477,18 @@
       grid-template-columns: 60% 40%;
       /* Перша кнопка 70%, друга 30% */
       gap: 10px;
-      grid-auto-rows: minmax(15px, auto); } }
+      grid-auto-rows: minmax(15px, auto); }
+  .home__popup {
+    width: 90%;
+    height: 80%;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px; }
+    .home__popup-close {
+      position: absolute;
+      z-index: 5;
+      left: 90%;
+      bottom: 92%; } }
 @media screen and (max-width: 750px) {
   .home__navigation {
     width: 10%;
