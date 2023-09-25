@@ -112,4 +112,57 @@
         .form__menu-buttons .form__login span {
           color: #9747FF; }
 
+@media screen and (max-width: 1200px) {
+  .form {
+    padding: 40px 60px; } }
+@media screen and (max-width: 1100px) {
+  .form {
+    padding: 30px 40px; }
+    .form__wallpaper {
+      width: 40%;
+      height: 80%; }
+    .form__menu {
+      padding-right: 0%; } }
+@media screen and (max-width: 850px) {
+  .form {
+    padding: 30px 40px; }
+    .form__wallpaper {
+      width: 40%;
+      height: 80%; }
+    .form__menu {
+      padding-right: 0%; } }
+@media screen and (max-width: 850px) {
+  .form {
+    padding: 0px 0px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column; }
+    .form__wallpaper {
+      width: 80%;
+      height: 80%;
+      position: absolute;
+      z-index: 0;
+      opacity: 0.5; }
+    .form__menu {
+      padding-right: 0%;
+      z-index: 1; } }
+@media screen and (max-width: 600px) {
+  .form__wallpaper {
+    width: 100%;
+    height: 100%; }
+  .form__menu-title {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 60px;
+    letter-spacing: 2px;
+    color: 0;
+    margin-top: 0px;
+    color: #fff;
+    text-align: center; }
+  .form__menu-box .form__input {
+    width: 330px; } }
+
 /*# sourceMappingURL=Form.css.map */
