@@ -27,11 +27,11 @@ function Home({data, setData, thisLogin, setThisLogin, thisPassword, setThisPass
   const shouldFetchData = thisLogin && thisPassword;
 
   useEffect(() => {
+    if (!thisLogin) {
+      window.location.reload();
+      return;
+    }
     if (shouldFetchData) {
-      if (!thisLogin) {
-        window.location.reload();
-        return;
-      }
   
       async function fetchData() {
         try {
