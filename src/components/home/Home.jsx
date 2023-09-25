@@ -57,7 +57,7 @@ function Home({data, setData, thisLogin, setThisLogin, thisPassword, setThisPass
 
   useEffect(() => {
     fetchData();
-  }, [thisLogin, thisPassword]);
+  }, [thisLogin, thisPassword, fetchData]);
 
   const hadleSupport = () => {
     window.open('https://github.com/dizer2');
