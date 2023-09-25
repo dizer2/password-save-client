@@ -57,6 +57,7 @@ function Home({data, setData, thisLogin, setThisLogin, thisPassword, setThisPass
   
       fetchData();
     }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [shouldFetchData, thisLogin, thisPassword, setData]);
 
   const hadleSupport = () => {
