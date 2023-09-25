@@ -99,7 +99,7 @@ function Form({ setThisLogin, setThisPassword, setData }) {
 
         if (login.length >= 6 && password.length >= 8) {
             try {
-              const response = await fetch(`http://localhost:5000/get-user?login=${login}&password=${password}`);
+              const response = await fetch(`https://saveme-password.onrender.com/get-user?login=${login}&password=${password}`);
             
               if (!response.ok) {
                 window.location.reload();

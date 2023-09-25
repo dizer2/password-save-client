@@ -33,7 +33,7 @@ function Home({data, setData, thisLogin, setThisLogin, thisPassword, setThisPass
       }
   
       try {
-        const response = await fetch(`http://localhost:5000/get-user?login=${thisLogin}&password=${thisPassword}`);
+        const response = await fetch(`https://saveme-password.onrender.com/get-user?login=${thisLogin}&password=${thisPassword}`);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -109,7 +109,7 @@ function Home({data, setData, thisLogin, setThisLogin, thisPassword, setThisPass
         console.log(newPassword);
         try {
           // Make a POST request to add the new password to the database
-          const response = await fetch('http://localhost:5000/add-password', {
+          const response = await fetch('https://saveme-password.onrender.com/add-password', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -163,7 +163,7 @@ function Home({data, setData, thisLogin, setThisLogin, thisPassword, setThisPass
   const handleDeletePassword = async (id) => {
     try {
       // Send a DELETE request to the server to delete the password
-      const response = await fetch(`http://localhost:5000/delete-password?id=${id}`, {
+      const response = await fetch(`https://saveme-password.onrender.com/delete-password?id=${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
