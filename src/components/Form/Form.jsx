@@ -44,7 +44,7 @@ function Form({ setThisLogin, setThisPassword, setData }) {
 
             try {
               let result = await fetch(
-                'http://localhost:5000/register', {
+                'https://saveme-password.onrender.com/register', {
                   method: "post",
                   body: JSON.stringify({ login, password }),
                   headers: {
