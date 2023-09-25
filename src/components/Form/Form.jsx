@@ -15,10 +15,10 @@ function Form({ setThisLogin, setThisPassword, setData }) {
     const navigate = useNavigate();
     
     useEffect(() => {
-      if ("LOGIN-USER" in localStorage ) {
-        navigate("/home")
-      } 
-    }, [])
+      if ("LOGIN-USER" in localStorage) {
+        navigate("/home");
+      }
+    }, [navigate]);
    
 
     const handleOnSubmit = async (e) => {
