@@ -25,6 +25,7 @@ function Home({data, setData, thisLogin, setThisLogin, thisPassword, setThisPass
   }
 
   
+  useEffect(() => {
 
   async function fetchData() {
     if (!thisLogin) {
@@ -53,11 +54,9 @@ function Home({data, setData, thisLogin, setThisLogin, thisPassword, setThisPass
       setIsLoading(true); 
     }
   }
-  
-
-  useEffect(() => {
-    fetchData();
+  fetchData();
   }, [thisLogin, thisPassword]);
+
 
   const hadleSupport = () => {
     window.open('https://github.com/dizer2');
