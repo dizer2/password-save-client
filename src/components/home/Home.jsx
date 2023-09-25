@@ -312,11 +312,11 @@ function Home({data, setData, thisLogin, setThisLogin, thisPassword, setThisPass
             </div>
           </div>
         </div>
-        <div className="home__navigation-bottom">
+        <div className="home__navigation-bottom" onClick={hadnleLogOut}>
           <div className="home__navigation-bottom-icon">
 
           </div>
-          <p onClick={hadnleLogOut} className="home__navigation-bottom-text">Log out</p>
+          <p  className="home__navigation-bottom-text">Log out</p>
         </div>
 
 

@@ -45,7 +45,7 @@
 					margin-top: 50px;
 		
 					.home__nav{
-						width: 309px;
+						width: 100%;
 						height: 60px;
 						border-radius: 4px;
 						@include display-center(flex-start, center);
@@ -416,6 +416,369 @@
 		transition-timing-function: cubic-bezier(0.230, 1.000, 0.320, 1.000); 
 		opacity: 1;
 		
+	}
+
+}
+
+
+@media screen and(max-width: 1300px) {
+	.home{
+		&__container{
+			.home__container-top{
+				&-filter{
+					margin-top: 15px;
+				}
+				&-password{
+					@include font($mainDefultColor, 16px, 400, auto, auto, 5px);
+				}
+			}
+		}
+	}
+}
+
+@media screen and(max-width: 1100px) {
+	.home{
+		&__navigation{
+			padding: 40px 30px;
+		}
+		&__container{
+			.home__container-top{
+				&-filter{
+					display: grid;
+					grid-template-columns: 60% 40%; /* Перша кнопка 70%, друга 30% */
+					gap: 10px;
+					grid-auto-rows: minmax(15px, auto);
+		
+				}
+			}
+		}
+	}
+}
+
+
+@media screen and(max-width: 1000px) {
+	.home{
+		&__navigation{
+			width: 10%;
+			padding: 20px 0px;
+			@include display-center(space-between, center);
+			flex-direction: column;
+			&-top{
+				&-logo{
+				@include display-center(center, flex-start);
+
+						.home__logo{
+							display: none;
+						}
+					}
+					&-menu{
+						.home__nav{
+							width: 60px;
+							height: 60px;
+							@include display-center(center, center);
+							margin-top: 20px;
+							padding-left: 0px;
+							cursor: pointer;
+
+							&-text{
+								display: none
+							}
+			
+							&-defult{
+								display: none;
+							}
+							
+						}
+					}
+			}
+			&-bottom{
+				&-text{
+					display: none;
+				}
+	
+			}
+		}
+		&__container{
+			width: 90%;
+			padding-right: 40px;
+
+			.home__container-top{
+				&-filter{
+					display: grid;
+					grid-template-columns: 60% 40%; /* Перша кнопка 70%, друга 30% */
+					gap: 10px;
+					grid-auto-rows: minmax(15px, auto);
+		
+				}
+			}
+		}
+	}
+}
+
+
+@media screen and(max-width: 750px) {
+	.home{
+		&__navigation{
+			width: 10%;
+			padding: 20px 0px;
+			@include display-center(space-between, center);
+			flex-direction: column;
+			&-top{
+				&-logo{
+					.home__icon{
+						width: 33px;
+						height: 40px;
+					}
+					}
+					&-menu{
+						.home__nav{
+							width: 45px;
+							height: 45px;
+							&-icon{
+								width: 15px;
+								height: 15px;
+								background-size: cover;	
+							}
+						}
+					}
+			}
+			&-bottom{
+				&-icon{
+					width: 15px;
+					height: 15px;
+				}
+			}
+		}
+		&__container{
+			width: 90%;
+			padding-right: 30px;
+			padding-left: 30px;
+
+			&-bottom{
+					  
+		&-password{
+			width: 100%;
+			padding: 16px;
+			.password__info{
+				&-photo{
+					width: 60px;
+					height: 60px;
+				}
+				&-text {
+					width: auto;
+					height: 60px;
+					margin-left: 20px;
+						.password__title {
+							@include font($dark, 20px, 500, auto, auto, 0px);
+						}
+						.password__main { 
+							width: auto;
+							height: 25px;
+							border-radius: 30px;
+							@include font(0, 16px, 500, auto, auto, 0px);
+							padding: 0 12px;
+							cursor: pointer;
+	
+						}
+					}
+			}
+
+			.password__changes{
+				height: 80px;
+				&-date {
+					@include font($mainDefultColor, 16px, 500, auto, auto, 0px);
+				}
+				&-box {
+					.change__button {
+						width: 30px;
+						height: 30px;
+						margin: 0 10px;
+						position: relative;
+						left: 10px;
+						&-img {
+							width: 15px;
+							height: 15px;
+						}
+					}
+				}
+			}
+			}
+		}
+	}
+ }
+}
+
+
+@media screen and(max-width: 550px) {
+	.home{
+		flex-direction: column;
+		&__navigation{
+			width: 100%;
+			height: 100px;
+			padding: 10px 20px;
+			@include display-center(space-between, center);
+			display: flex !important;
+			flex-direction: row;
+			margin-top: 0px;
+			position: absolute;
+			top: 0%;
+
+			&-top{
+				width: auto;
+				height: auto;
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+				flex-direction: row;
+				&-logo{
+					width: auto;
+					height: auto;
+					display: flex;
+					@include display-center(flex-start, center);
+					flex-direction: row;
+
+					.home__icon{
+						width: 33px;
+						height: 40px;
+					}
+					}
+					&-menu{
+						height: 100%;
+						display: flex;
+						margin-top: 0px;
+						align-items: center;
+						margin-left: 50px;
+						.home__nav{
+							width: 45px;
+							height: 45px;
+							margin-top: 0px;
+							&-icon{
+								width: 20px;
+								height: 20px;
+								background-size: cover;	
+							}
+						}
+					}
+			}
+			&-bottom{
+				&-icon{
+					width: 15px;
+					height: 15px;
+				}
+			}
+		}
+
+		&__container{
+			width: 100%;
+			height: 100%;
+			padding-left: 20px;
+			padding-right: 20px;
+			padding-top: 100px;
+			.home__container-top{
+				&-filter{
+					grid-template-columns: 50% 50%; 
+					.home__search{
+						padding: 10px;
+						&-icon{
+							width: 25px;
+							height: 20px;
+						}
+						&-input{
+							@include font($mainDefultColor, 18px, 500, auto, auto, 0px);
+							margin-left: 20px;
+						}
+		
+					}
+				}
+
+
+		  }
+		  &-bottom{
+			margin-top: 15px;
+
+			&-password{
+				height: 200px;
+				flex-direction: column;
+				.password__info{
+					width: 100%;
+					height: auto;
+					@include display-center(space-between, center);
+					
+					&-photo{
+						width: 110px;
+						height: 110px;
+						background: #F5F2F6;
+					}
+	
+					&-text {
+					width: auto;
+					height: 100px;
+					@include display-center(space-between, flex-start);
+					flex-direction: column;
+					margin-left: 30px;
+						.password__title {
+							@include font($dark, 24px, 500, auto, auto, 0px);
+						}
+						.password__main { 
+							width: auto;
+							height: 32px;
+							border-radius: 39px;
+							background: #9747FF;
+							@include display-center(center, center);
+							@include font(0, 20px, 500, auto, auto, 0px);
+							padding: 0 12px;
+							cursor: pointer;
+	
+						}
+					}
+	
+				}
+	
+				.password__changes{
+					width: 100%;
+					height: 80px;
+					@include display-center(space-between, flex-end);
+					flex-direction: row-reverse;
+	
+					&-date {
+						@include font($mainDefultColor, 18px, 500, auto, auto, 0px);
+					}
+					&-box {
+						width: auto;
+						height: auto;
+						@include display-center(flex-start, center);
+						.change__button {
+							width: 34px;
+							height: 34px;
+							border: 1px solid #E8E8E8;
+							background: #FFF;
+							cursor: pointer;
+							@include display-center(center, center);
+							margin: 0 0px;
+				
+							left: 0;
+							margin-left: 15px;
+							position: relative;
+							left: -15px;
+							&-img {
+								width: 19px;
+								height: 19px;
+								background-size: cover;
+								background-repeat: no-repeat;
+							}
+						}
+					}
+				}
+	
+			}
+
+		  }
+
+
+
+		}
+
+
 	}
 
 }

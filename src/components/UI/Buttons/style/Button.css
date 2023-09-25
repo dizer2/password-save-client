@@ -25,4 +25,20 @@
     margin-top: 0px;
     margin-left: 20px; }
 
+@media screen and (max-width: 550px) {
+  .home__button {
+    padding-left: 10px; }
+    .home__button-icon {
+      width: 20px;
+      height: 20px; }
+    .home__button-text {
+      font-family: 'Montserrat', sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: auto;
+      letter-spacing: auto;
+      color: #94A3B8;
+      margin-top: 0px; } }
+
 /*# sourceMappingURL=Button.css.map */
