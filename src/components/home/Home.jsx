@@ -26,37 +26,34 @@ function Home({data, setData, thisLogin, setThisLogin, thisPassword, setThisPass
 
   
   useEffect(() => {
-
-  async function fetchData() {
-    if (!thisLogin) {
-      window.location.reload();
-      return;
-    }
-  
-    try {
-      const response = await fetch(`http://localhost:5000/get-user?login=${thisLogin}&password=${thisPassword}`);
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+    async function fetchData() {
+      if (!thisLogin) {
+        window.location.reload();
+        return;
       }
   
-      const result = await response.json();
-      localStorage.setItem("LOGIN-USER", JSON.stringify(result.login));
-      localStorage.setItem("PASSWORD-USER", JSON.stringify(result.password));
-      setData(result);
-      setSavePassword(result.savePassword || []);
-      setOriginalSavePassword(result.savePassword || []);
-      console.log(result);
-      console.log(data);
-      setIsLoading(true); 
-
-    } catch (error) {
-      console.error("Error:", error);
-      setIsLoading(true); 
+      try {
+        const response = await fetch(`http://localhost:5000/get-user?login=${thisLogin}&password=${thisPassword}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+  
+        const result = await response.json();
+        localStorage.setItem("LOGIN-USER", JSON.stringify(result.login));
+        localStorage.setItem("PASSWORD-USER", JSON.stringify(result.password));
+        setData(result);
+        setSavePassword(result.savePassword || []);
+        setOriginalSavePassword(result.savePassword || []);
+        console.log(result);
+        console.log(data);
+        setIsLoading(true); 
+      } catch (error) {
+        console.error("Error:", error);
+        setIsLoading(true); 
+      }
     }
-  }
-  fetchData();
-  }, [thisLogin, thisPassword]);
-
+    fetchData();
+  }, [thisLogin, thisPassword, data, setData]);
 
   const hadleSupport = () => {
     window.open('https://github.com/dizer2');
