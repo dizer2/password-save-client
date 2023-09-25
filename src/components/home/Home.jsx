@@ -24,36 +24,40 @@ function Home({data, setData, thisLogin, setThisLogin, thisPassword, setThisPass
     setPopupOpen(!popupOpen);
   }
 
-  
+  const shouldFetchData = thisLogin && thisPassword;
+
   useEffect(() => {
-    async function fetchData() {
+    if (shouldFetchData) {
       if (!thisLogin) {
         window.location.reload();
         return;
       }
   
-      try {
-        const response = await fetch(`https://saveme-password.onrender.com/get-user?login=${thisLogin}&password=${thisPassword}`);
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
+      async function fetchData() {
+        try {
+          const response = await fetch(`https://saveme-password.onrender.com/get-user?login=${thisLogin}&password=${thisPassword}`);
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
   
-        const result = await response.json();
-        localStorage.setItem("LOGIN-USER", JSON.stringify(result.login));
-        localStorage.setItem("PASSWORD-USER", JSON.stringify(result.password));
-        setData(result);
-        setSavePassword(result.savePassword || []);
-        setOriginalSavePassword(result.savePassword || []);
-        console.log(result);
-        console.log(data);
-        setIsLoading(true); 
-      } catch (error) {
-        console.error("Error:", error);
-        setIsLoading(true); 
+          const result = await response.json();
+          localStorage.setItem("LOGIN-USER", JSON.stringify(result.login));
+          localStorage.setItem("PASSWORD-USER", JSON.stringify(result.password));
+          setData(result);
+          setSavePassword(result.savePassword || []);
+          setOriginalSavePassword(result.savePassword || []);
+          console.log(result);
+          console.log(data);
+          setIsLoading(true);
+        } catch (error) {
+          console.error("Error:", error);
+          setIsLoading(true);
+        }
       }
+  
+      fetchData();
     }
-    fetchData();
-  }, [thisLogin, thisPassword, data, setData]);
+  }, [shouldFetchData, thisLogin, thisPassword, setData]);
 
   const hadleSupport = () => {
     window.open('https://github.com/dizer2');
