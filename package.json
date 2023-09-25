@@ -35,9 +35,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "other-dependency": "^x.y.z",
-    "@babel/plugin-proposal-private-property-in-object": "^1.0.4"
   }
 }
